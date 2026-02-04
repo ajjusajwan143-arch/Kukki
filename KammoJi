@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>kya Khana pasand karogi kukki💖</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+      color: white;
+      padding-top: 80px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      text-shadow: 2px 2px #ff3366;
+    }
+
+    h2 {
+      margin-top: 10px;
+    }
+
+    button {
+      font-size: 1.5rem;
+      padding: 15px 30px;
+      margin: 20px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+
+    .yes {
+      background: #ff3366;
+      color: white;
+    }
+
+    .no {
+      background: #f1f1f1;
+      color: #333;
+      position: absolute;
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 24px;
+      animation: float 5s linear infinite;
+    }
+
+    @keyframes float {
+      from {
+        transform: translateY(100vh);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-10vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1 id="question">Will you be my Valentine? 💖</h1>
+  <h2 id="countdown"></h2>
+
+  <button class="yes" onclick="yesClick()">Yes 💘</button>
+  <button class="no" onmouseover="runAway()">No 🙃</button>
+
+  <audio autoplay loop>
+    <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_7b9c2c4f4e.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const name = prompt("What's your name? 💕");
+    if (name) {
+      document.getElementById("question").textContent =
+        `Will you be my Valentine, ${name}? 💖`;
+    }
+
+    function yesClick() {
+      document.body.innerHTML = `
+        <h1>YAYYYY 💘🎉</h1>
+        <h2>You just made me the happiest 😍</h2>
+        <p>I can’t wait for Valentine’s Day 💕</p>
+      `;
+    }
+
+    function runAway() {
+      const no = document.querySelector(".no");
+      no.style.left = Math.random() * (window.innerWidth - 100) + "px";
+      no.style.top = Math.random() * (window.innerHeight - 50) + "px";
+    }
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.textContent = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 20 + 20 + "px";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }
+    setInterval(createHeart, 400);
+
+    const valentine = new Date("February 14, 2026").getTime();
+    setInterval(() => {
+      const now = new Date().getTime();
+      const diff = valentine - now;
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      document.getElementById("countdown").textContent =
+        `Only ${days} days until Valentine’s Day 💞`;
+    }, 1000);
+  </script>
+
+</body>
+</html>
